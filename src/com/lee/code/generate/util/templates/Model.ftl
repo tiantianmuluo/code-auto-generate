@@ -23,12 +23,25 @@ public class ${table_name} extends BaseModel implements ICreateListenable,IModif
     /**
     *${model.columnComment!}
     */
-    <#if (model.columnType = 'varchar' || model.columnType = 'text')>
+    <#if (model.columnType = 'VARCHAR' || model.columnType = 'TEXT')>
     @Column(name = "${model.columnName}",columnDefinition = "VARCHAR")
     private String ${model.changeColumnName?uncap_first};
 
     </#if>
-    <#if model.columnType = 'timestamp' >
+    
+    <#if model.columnType = 'INT'>
+    @Column(name = "${model.columnName}",columnDefinition = "INT")
+    private Integer ${model.changeColumnName?uncap_first};
+
+    </#if>
+    
+    <#if model.columnType = 'DECIMAL'>
+    @Column(name = "${model.columnName}",columnDefinition = "DECIMAL")
+    private Double ${model.changeColumnName?uncap_first};
+
+    </#if>
+    
+    <#if (model.columnType = 'TIMESTAMP' || model.columnType = 'DATETIME')>
     @Column(name = "${model.columnName}",columnDefinition = "TIMESTAMP")
     private Date ${model.changeColumnName?uncap_first};
 
@@ -38,7 +51,7 @@ public class ${table_name} extends BaseModel implements ICreateListenable,IModif
 
 <#if model_column?exists>
 <#list model_column as model>
-<#if (model.columnType = 'varchar' || model.columnType = 'text')>
+<#if (model.columnType = 'VARCHAR' || model.columnType = 'TEXT')>
     public String get${model.changeColumnName}() {
         return this.${model.changeColumnName?uncap_first};
     }
@@ -48,7 +61,30 @@ public class ${table_name} extends BaseModel implements ICreateListenable,IModif
     }
 
 </#if>
-<#if model.columnType = 'timestamp' >
+
+<#if model.columnType = 'INT'>
+    public Integer get${model.changeColumnName}() {
+        return this.${model.changeColumnName?uncap_first};
+    }
+
+    public void set${model.changeColumnName}(Integer ${model.changeColumnName?uncap_first}) {
+        this.${model.changeColumnName?uncap_first} = ${model.changeColumnName?uncap_first};
+    }
+
+</#if>
+
+<#if model.columnType = 'DECIMAL'>
+    public Double get${model.changeColumnName}() {
+        return this.${model.changeColumnName?uncap_first};
+    }
+
+    public void set${model.changeColumnName}(Double ${model.changeColumnName?uncap_first}) {
+        this.${model.changeColumnName?uncap_first} = ${model.changeColumnName?uncap_first};
+    }
+
+</#if>
+
+<#if (model.columnType = 'TIMESTAMP' || model.columnType = 'DATETIME')>
     public Date get${model.changeColumnName}() {
         return this.${model.changeColumnName?uncap_first};
     }

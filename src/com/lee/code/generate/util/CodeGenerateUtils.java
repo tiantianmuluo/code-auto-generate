@@ -17,13 +17,13 @@ import java.util.Map;
 
 /**
  * 描述：代码生成器
- * Created by Ay on 2017/5/1.
+ * Created by lipeng on 2018/4/18.
  */
 public class CodeGenerateUtils {
 
     private final String AUTHOR = "lipeng";
     private final String CURRENT_DATE = "2018/04/08";
-    private final String tableName = "tbl_order";
+    private final String tableName = "t_order";
     private final String packageName = "com.evada.pm.process.manage";
     private final String tableAnnotation = "质量问题";
     private final String URL = "jdbc:mysql://172.29.231.183:3306/cjn_sso?useSSL=false&useUnicode=true&amp;characterEncoding=UTF-8&allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull";
@@ -32,6 +32,7 @@ public class CodeGenerateUtils {
     private final String DRIVER = "com.mysql.jdbc.Driver";
     private final String diskPath = "D:/codeAutoGenerate/";
     private final String changeTableName = replaceUnderLineAndUpperCase(tableName);
+    private static final String SQL = "SELECT * FROM ";// 数据库操作
 
     public Connection getConnection() throws Exception{
         Class.forName(DRIVER);
@@ -40,8 +41,10 @@ public class CodeGenerateUtils {
     }
 
     public static void main(String[] args) throws Exception{
+    	System.out.println("\n生成开始。。。。");
         CodeGenerateUtils codeGenerateUtils = new CodeGenerateUtils();
         codeGenerateUtils.generate();
+        System.out.println("\n生成结束。。。。");
     }
 
     public void generate() throws Exception{
