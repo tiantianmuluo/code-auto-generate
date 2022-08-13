@@ -1,1 +1,4 @@
-/bin/
+/.idea/
+/es-spring-test.iml
+/code-auto-generate-core/target/
+/code-auto-generate-admin/target/
